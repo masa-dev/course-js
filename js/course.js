@@ -26,8 +26,8 @@ class CourseObj {
 
     judgeCollision(x, y) {  //点と線分の距離で衝突判別する
         let tempA = new Coordinate(), tempB = new Coordinate();
-        [tempA.x, tempB.x] = AisBiggerThanB(this.pointA.x, this.pointB.x);
-        [tempA.y, tempB.y] = AisBiggerThanB(this.pointA.y, this.pointB.y);
+        [tempA.x, tempB.x] = AisSmallerThanB(this.pointA.x, this.pointB.x);
+        [tempA.y, tempB.y] = AisSmallerThanB(this.pointA.y, this.pointB.y);
 
         //傾きが無限大になるので別に判定
         if (this.pointA.x == this.pointB.x) {
