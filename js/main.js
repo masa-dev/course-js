@@ -18,15 +18,15 @@ initCanvasSettings(courseCtx, 2, 'rgb(232, 230, 227)')
 initCanvasSettings(goalCtx, 2, 'blue');
 
 //コースの線を作る
-for(let i = 0; i < 8; i++) {
-    course.push(new CourseObj(courseCoodinates1[i][0], courseCoodinates1[i][1], courseCoodinates1[i+1][0], courseCoodinates1[i+1][1]));
-    course.push(new CourseObj(courseCoodinates2[i][0], courseCoodinates2[i][1], courseCoodinates2[i+1][0], courseCoodinates2[i+1][1]));
+for (let i = 0; i < 8; i++) {
+    course.push(new CourseObj(courseCoodinates1[i][0], courseCoodinates1[i][1], courseCoodinates1[i + 1][0], courseCoodinates1[i + 1][1]));
+    course.push(new CourseObj(courseCoodinates2[i][0], courseCoodinates2[i][1], courseCoodinates2[i + 1][0], courseCoodinates2[i + 1][1]));
 }
 course.push(new CourseObj(100, 700, 200, 700));     //入り口を封鎖
 let goal = new CourseObj(500, 100, 600, 100);
 
 //線引き
-for(let i = 0; i < course.length; i++) {
+for (let i = 0; i < course.length; i++) {
     course[i].lineToCanvas(courseCtx);
 }
 goal.lineToCanvas(goalCtx);
@@ -45,7 +45,7 @@ document.addEventListener('keyup', () => {
     keydown = '';
 });
 function keyOperation(keydown) {
-    switch(keydown) {
+    switch (keydown) {
         case 'ArrowLeft':
             car.turnLeft();
             break;
@@ -58,11 +58,31 @@ function keyOperation(keydown) {
         case 'd':
             car.turnRight();
             break;
-        case 'Enter': 
+        case 'Enter':
             location.reload();
+            break;
+        case ' ':
+            location.reload();
+            break;
         default:
             break;
     }
+}
+
+//画面のサイズが小さいとき
+
+const width = document.body.clientWidth;
+const height = document.body.clientHeight;
+if ((width < 850) || height < 820) {
+    const baseSize = Math.min(width, height) - 10;
+    const canvasSize = document.getElementsByClassName('canvas');
+    const canvasSpace = document.getElementById('canvas-space');
+
+    for (let i = 0; i < canvasSize.length; i++) {
+        canvasSize[i].style.width = baseSize + 'px';
+    }
+    canvasSpace.style.height = baseSize + 'px';
+
 }
 
 //車の動作とcanvas更新
@@ -79,12 +99,12 @@ function loop() {
 
     //衝突判定
     course.forEach((element) => {
-       if(element.judgeCollision(car.x, car.y)) {
-           car.stop();
-           document.getElementById('result').innerHTML = 'You Lose'
-       }
+        if (element.judgeCollision(car.x, car.y)) {
+            car.stop();
+            document.getElementById('result').innerHTML = 'You Lose'
+        }
     });
-    if(goal.judgeCollision(car.x, car.y)) {
+    if (goal.judgeCollision(car.x, car.y)) {
         document.getElementById('result').innerHTML = 'ゴールしました'
         car.stop();
     }

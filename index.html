@@ -1,23 +1,40 @@
 <!DOCTYPE html>
 <html lang="ja">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width">
-        <title>cource game</title>
-        <link rel="stylesheet" href="css/style.css">
-    </head>
-    <body>
-        <div class="content">
-            <div id="resultArea">
-                <p>やり直すときは Enter キーを押してください</p>
-                <p id="result"></p>
-            </div>
-            <canvas class="canvas" id="canvas-course" width="800" height="800"></canvas>
-            <canvas class="canvas" id="canvas-goal" width="800" height="800"></canvas>
-            <canvas class="canvas" id="canvas-car" width="800" height="800"></canvas>
-        </div>
-        <script src="js/course.js"></script>
-        <script src="js/car.js"></script>
-        <script src="js/main.js"></script>
-    </body>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>cource game</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+  <div class="content">
+    <canvas class="canvas" id="canvas-course" width="800" height="800"></canvas>
+    <canvas class="canvas" id="canvas-goal" width="800" height="800"></canvas>
+    <canvas class="canvas" id="canvas-car" width="800" height="800"></canvas>
+    <div id="canvas-space"></div>
+    <div id="explanation">
+      <p>左回転：「←」または「a」<br>右回転：「→」または「d」<br>再読込：「Enter」または「Space」</p>
+    </div>
+    <div id="resultArea">
+      <p>やり直すときは Enter キーを押してください</p>
+      <p id="result">進行中</p>
+    </div>
+    <div id="button-area">
+      <div id="direction-button" class="btn-group d-flex" role="group" aria-label="change-direction">
+        <button id="left" class="btn btn-primary btn-lg">←</button>
+        <button id="right" class="btn btn-primary btn-lg">→</button>
+      </div>
+      <button id="reset-button" class="btn btn-danger btn-lg" onclick="location.reload()">リセット</button>
+    </div>
+  </div>
+  <script src="js/course.js"></script>
+  <script src="js/car.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/button.js"></script>
+</body>
+
 </html>

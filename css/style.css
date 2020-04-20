@@ -2,18 +2,54 @@ body {
     background-color: rgb(24, 26, 27);
     color: rgb(220, 217, 212);
 }
+
 p {
     margin: 0 auto;
-}
-#resultArea {
     text-align: center;
 }
+
+.content {
+    width: 850px;
+    margin: 0 auto;
+}
+
 .canvas {
     position: absolute;
     top: 0;
-    bottom: 0;
     left: 0;
     right: 0;
-    margin: auto;
+    margin: 10px auto;
     border: 1px solid gray;
+}
+
+#canvas-space {
+    height: 800px;
+    margin: 10px auto;
+}
+
+#button-area {
+    display: none;
+}
+
+button {
+    margin: 10px auto;
+}
+
+#reset-button {
+    width: 100%;
+}
+
+@media only screen and (max-width: 850px) {
+    .content {
+        width: 95%;
+    }
+    @media only screen and (max-width: 650px) {
+        #button-area {
+            display: block;
+        }
+
+        #explanation {
+            display: none;
+        }
+    }
 }

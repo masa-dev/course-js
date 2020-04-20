@@ -22,7 +22,8 @@ class CourseObj {
       
         //return tc * td < 0 && ta * tb < 0; // 端点を含まない場合
         return tc * td <= 0 && ta * tb <= 0;
-    };
+    }
+    
     judgeCollision(x, y) {  //点と線分の距離で衝突判別する
         let tempA = new Coordinate(), tempB = new Coordinate();
         [tempA.x, tempB.x] = AisBiggerThanB(this.pointA.x, this.pointB.x);
