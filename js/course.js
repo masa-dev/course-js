@@ -23,7 +23,7 @@ class CourseObj {
         //return tc * td < 0 && ta * tb < 0; // 端点を含まない場合
         return tc * td <= 0 && ta * tb <= 0;
     }
-    
+
     judgeCollision(x, y) {  //点と線分の距離で衝突判別する
         let tempA = new Coordinate(), tempB = new Coordinate();
         [tempA.x, tempB.x] = AisBiggerThanB(this.pointA.x, this.pointB.x);
@@ -41,7 +41,7 @@ class CourseObj {
             let slope, intercepts;
             let a, b, c, distance;  //ax+by+c=0 , 二点間の距離
             
-            //バウンティボックスを作成
+            //バウンディングボックスを作成
             if(x > tempA.x-5 && x < tempB.x+5) {
                 if(y > tempA.y-5 && y < tempB.y+5) {
                     slope = (this.pointB.y - this.pointA.y) / (this.pointB.x - this.pointA.x);
