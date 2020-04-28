@@ -75,6 +75,7 @@ function keyOperation(keydown) {
 
 const width = document.body.clientWidth;
 const height = document.body.clientHeight;
+
 if (width < 850) {
     const baseSize = width - 10;
     const canvasSize = document.getElementsByClassName('canvas');
@@ -88,7 +89,7 @@ if (width < 850) {
 
 }
 if (height < 950) {
-    const baseSize = height - 150;
+    const baseSize = height - 350;
     const canvasSize = document.getElementsByClassName('canvas');
     const canvasSpace = document.getElementById('canvas-space');
 
@@ -99,6 +100,7 @@ if (height < 950) {
     canvasSpace.style.width = baseSize + 'px';
 
 }
+
 
 //車の動作とcanvas更新
 function loop() {
