@@ -33,10 +33,10 @@ class Car {
         this.xVector = 0;
         this.yVector = 0;
     }
-    showOnCanvas(context) {
+    displayOnCanvas(context) {
         context.beginPath();
         context.fillStyle = 'red';
-        context.arc(this.x, this.y, 3, 0, 2*Math.PI);
+        context.arc(this.x, this.y, 3, 0, 2 * Math.PI);
         context.fill();
     }
 }

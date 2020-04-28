@@ -13,6 +13,9 @@ const courseCoodinates1 = [[100, 700], [100, 500], [120, 430], [180, 370], [250,
 const courseCoodinates2 = [[200, 700], [200, 500], [215, 465], [250, 450], [450, 450], [520, 430], [580, 370], [600, 300], [600, 100]];
 let course = [];
 
+//fps のカウント
+let flameCount = 0;
+
 //コースの設定
 initCanvasSettings(courseCtx, 2, 'rgb(232, 230, 227)')
 initCanvasSettings(goalCtx, 2, 'blue');
@@ -34,7 +37,6 @@ goal.lineToCanvas(goalCtx);
 
 //車を定義
 let car = new Car(150, 690, 5);
-car.showOnCanvas(carCtx);
 
 //キー操作
 let keydown = '';
@@ -73,8 +75,8 @@ function keyOperation(keydown) {
 
 const width = document.body.clientWidth;
 const height = document.body.clientHeight;
-if ((width < 850) || height < 820) {
-    const baseSize = Math.min(width, height) - 10;
+if (width < 850) {
+    const baseSize = width - 10;
     const canvasSize = document.getElementsByClassName('canvas');
     const canvasSpace = document.getElementById('canvas-space');
 
@@ -82,6 +84,19 @@ if ((width < 850) || height < 820) {
         canvasSize[i].style.width = baseSize + 'px';
     }
     canvasSpace.style.height = baseSize + 'px';
+    canvasSpace.style.width = baseSize + 'px';
+
+}
+if (height < 950) {
+    const baseSize = height - 150;
+    const canvasSize = document.getElementsByClassName('canvas');
+    const canvasSpace = document.getElementById('canvas-space');
+
+    for (let i = 0; i < canvasSize.length; i++) {
+        canvasSize[i].style.width = baseSize + 'px';
+    }
+    canvasSpace.style.height = baseSize + 'px';
+    canvasSpace.style.width = baseSize + 'px';
 
 }
 
@@ -95,7 +110,7 @@ function loop() {
     car.update();
     courseCtx.stroke();
     goalCtx.stroke();
-    car.showOnCanvas(carCtx);
+    car.displayOnCanvas(carCtx);
 
     //衝突判定
     course.forEach((element) => {
@@ -109,7 +124,17 @@ function loop() {
         car.stop();
     }
 
+    //フレームをカウントする
+    flameCount++;
+
     //再帰的に呼び出す
     window.requestAnimationFrame(() => loop());
 }
 window.requestAnimationFrame(() => loop());
+
+//fps を表示
+let displayFPS = setInterval(function () {
+    let fps = flameCount / 0.5;
+    document.getElementById('fps').innerHTML = fps + ' fps';
+    flameCount = 0;
+}, 500);

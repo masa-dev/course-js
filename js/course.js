@@ -58,6 +58,7 @@ class CourseObj {
             }
         }
     }
+
     lineToCanvas(context) {
         context.moveTo(this.pointA.x, this.pointA.y);
         context.lineTo(this.pointB.x, this.pointB.y);
